@@ -49,7 +49,7 @@ int main() {
     double result=0;
     void *returned;
 
-    //Se da la
+    //Se da bienvenida al usuario
     cout<<endl;
     cout<<"---------------------------------------------------------------------------------------------------------------------"<<endl;
     cout<<"                                              BIENVENIDO AL PROGRAMA DE "<<endl;
@@ -58,8 +58,10 @@ int main() {
     cout<<endl;
 
 
+    //Se inicia el ciclo del menu
     while (inUse){
         cout<<endl;
+        //se le da las opciones y se registra su respuesta
         cout<<"Se evaluaran las series: \n"
               "A) Σ 3/(2^n) ------------ n=0 -> ∞ \n"
               "B) Σ 1/n(n+1) ----------- n=1 -> ∞ \n"
@@ -68,15 +70,16 @@ int main() {
         cout<<" -- ";
         cin>>input;
 
+        //en base a lo que escogio el switch hara un procedimiento o otro
         switch (tolower(input)) {
-            case 'a':
+            case 'a'://En caso de la funcion a, el valor de convergencia minimo es 6
                 while (inUse){
                     result=6;
                     cout<<endl;
                     cout<<"¿Cual es el valor maximo de n que va a evaluar?\n(Recordar que debe ser un entero mayor o igual que 0)\n -- ";
-                    cin>>n_String;
-                    try{
-                        n= stoi(n_String);
+                    cin>>n_String;//Se recibe el valor de lo que se va a trabajar
+                    try{//en caso el usuario ingrese un valor que no sea un numero entero se le mostrara un mensaje de error
+                        n= stoi(n_String);//Se convierte en entero
                         if(n<0){
                             cout<<"                   INGRESO UN VALOR NUMERICO INCORRECTO! (MENOR QUE 0)"<<endl;
                         } else{
@@ -86,53 +89,62 @@ int main() {
                         cout<<" INGRESO UN VALOR INCORRECTO! (NO NUMERICO)"<<endl;
                     }
                 }
-                for(int i=0; i<n; i++) {
+                for(int i=0; i<n; i++) {//Se crean los hilos correspondientes para calcular cada parte de las series
+                    //se instancia el hilo y se utiliaza el Join para indicarle que empiecen de forma secuencial y donde alacenar el resultado del hilo
                     pthread_create(&thread_id, &attr, A_Serie, (void *)&i );
                     pthread_join(thread_id, &returned);
+                    //Se guarda el resultado del hilo y se le resta a result
                     result-=*(double*) returned;
+                    //se libera el espacio del returned
                     free(returned);
                 }
+
                 inUse= true;
+                //se muestra un mensaje con el resultado
                 cout<<"\n-------------------------------------------------------------------------------------------------"<<endl;
                 cout<<"EL VALOR DE CONVERGENCIA PARA ESTA SERIE CON UN VALOR MAXIMO PARA n DE "<<n<<" ES: "<<result<<endl;
                 cout<<"---------------------------------------------------------------------------------------------------"<<endl;
                 break;
             case 'b':
+                //En caso de la funcion a, el valor de convergencia minimo es 6
                 while (inUse){
                     result=1;
                     cout<<endl;
                     cout<<"¿Cual es el valor maximo de n que va a evaluar?\n(Recordar que debe ser un entero mayor o igual que 1)\n -- ";
-                    cin>>n_String;
-                    try{
-                        n= stoi(n_String);
+                    cin>>n_String;//Se recibe el valor de lo que se va a trabajar
+                    try{//en caso el usuario ingrese un valor que no sea un numero entero se le mostrara un mensaje de error
+                        n= stoi(n_String);//Se convierte en entero
                         if(n<1){
-                            cout<<" INGRESO UN VALOR NUMERICO INCORRECTO! (MENOR QUE 1)"<<endl;
+                            cout<<"                   INGRESO UN VALOR NUMERICO INCORRECTO! (MENOR QUE 1)"<<endl;
                         } else{
                             inUse=false;
                         }
                     }catch (exception e){
-                        cout<<"                          INGRESO UN VALOR INCORRECTO! (NO NUMERICO)"<<endl;
+                        cout<<" INGRESO UN VALOR INCORRECTO! (NO NUMERICO)"<<endl;
                     }
                 }
-                for(int i=1; i<n; i++) {
+                for(int i=1; i<n; i++) {//Se crean los hilos correspondientes para calcular cada parte de las series
+                    //se instancia el hilo y se utiliaza el Join para indicarle que empiecen de forma secuencial y donde alacenar el resultado del hilo
                     pthread_create(&thread_id, &attr, B_Serie, (void *)&i );
                     pthread_join(thread_id, &returned);
+                    //Se guarda el resultado del hilo y se le resta a result
                     result-=*(double*) returned;
+                    //se libera el espacio del returned
                     free(returned);
                 }
+                //Se imprime el mensaje con el resultado.
                 inUse= true;
                 cout<<"\n-------------------------------------------------------------------------------------------------"<<endl;
                 cout<<"EL VALOR DE CONVERGENCIA PARA ESTA SERIE CON UN VALOR MAXIMO PARA n DE "<<n<<" ES: "<<result<<endl;
                 cout<<"---------------------------------------------------------------------------------------------------"<<endl;
                 break;
+
             default:
                 inUse= false;
 
         }
     }
-
+    //Se sale del programa.
     pthread_exit(NULL);
-
-
     return 0;
 }
