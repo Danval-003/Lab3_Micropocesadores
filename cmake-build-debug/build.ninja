@@ -41,35 +41,66 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/danval/CLionProjects/untitled3/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target untitled3
+# Object build statements for EXECUTABLE target part1
 
 
 #############################################
-# Order-only phony target for untitled3
+# Order-only phony target for part1
 
-build cmake_object_order_depends_target_untitled3: phony || CMakeFiles/untitled3.dir
+build cmake_object_order_depends_target_part1: phony || CMakeFiles/part1.dir
 
-build CMakeFiles/untitled3.dir/main.cpp.o: CXX_COMPILER__untitled3_Debug /home/danval/CLionProjects/untitled3/main.cpp || cmake_object_order_depends_target_untitled3
-  DEP_FILE = CMakeFiles/untitled3.dir/main.cpp.o.d
+build CMakeFiles/part1.dir/Part1.cpp.o: CXX_COMPILER__part1_Debug /home/danval/CLionProjects/untitled3/Part1.cpp || cmake_object_order_depends_target_part1
+  DEP_FILE = CMakeFiles/part1.dir/Part1.cpp.o.d
   FLAGS = -O0 -O0 -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles/untitled3.dir
-  OBJECT_FILE_DIR = CMakeFiles/untitled3.dir
+  OBJECT_DIR = CMakeFiles/part1.dir
+  OBJECT_FILE_DIR = CMakeFiles/part1.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target untitled3
+# Link build statements for EXECUTABLE target part1
 
 
 #############################################
-# Link the executable untitled3
+# Link the executable part1
 
-build untitled3: CXX_EXECUTABLE_LINKER__untitled3_Debug CMakeFiles/untitled3.dir/main.cpp.o
+build part1: CXX_EXECUTABLE_LINKER__part1_Debug CMakeFiles/part1.dir/Part1.cpp.o
   FLAGS = -O0 -O0 -g
-  OBJECT_DIR = CMakeFiles/untitled3.dir
+  OBJECT_DIR = CMakeFiles/part1.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = untitled3
-  TARGET_PDB = untitled3.dbg
+  TARGET_FILE = part1
+  TARGET_PDB = part1.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target part2
+
+
+#############################################
+# Order-only phony target for part2
+
+build cmake_object_order_depends_target_part2: phony || CMakeFiles/part2.dir
+
+build CMakeFiles/part2.dir/Part2.cpp.o: CXX_COMPILER__part2_Debug /home/danval/CLionProjects/untitled3/Part2.cpp || cmake_object_order_depends_target_part2
+  DEP_FILE = CMakeFiles/part2.dir/Part2.cpp.o.d
+  FLAGS = -O0 -O0 -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/part2.dir
+  OBJECT_FILE_DIR = CMakeFiles/part2.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target part2
+
+
+#############################################
+# Link the executable part2
+
+build part2: CXX_EXECUTABLE_LINKER__part2_Debug CMakeFiles/part2.dir/Part2.cpp.o
+  FLAGS = -O0 -O0 -g
+  OBJECT_DIR = CMakeFiles/part2.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = part2
+  TARGET_PDB = part2.dbg
 
 
 #############################################
@@ -106,7 +137,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/danval/CLionProjects/untitled3/cmake-build-debug
 
-build all: phony untitled3
+build all: phony part1 part2
 
 # =============================================================================
 # Built-in targets
